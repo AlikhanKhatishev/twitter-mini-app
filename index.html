@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Page Title</title>
+	</head>
+	<body>
+        <div id="app" align="center">
+            <h1>{{ title }}</h1>
+            <p>Share your thoughts, people</p>
+            <form @submit.prevent="onSubmit">
+                <textarea v-model="item" required placeholder="Type tweet here"></textarea>
+                <br />
+                <button type="submit">Submit</button>
+            </form>
+            <ul style="list-style-type: none;">
+                <li v-for="(tweet, id) in items" :key="tweet.id">
+                    <img style="width: 30px; height: 30px;" :src="tweet.avatar" />
+                    <span>{{ tweet.date }}</span>
+                    <div>{{ tweet.body }}</div>
+                    <button @click="addLikes(tweet)">Like:{{ tweet.like }}</button>
+                    <button @click="addDislike(tweet)">Dislike:{{ tweet.dislike }}</button>
+                    <button @click="deleteTweet(id)">Delete</button>
+                </li>
+            </ul>
+        </div>
+		
+        <script src="https://unpkg.com/vue@next"></script>
+	</body>
+</html>
